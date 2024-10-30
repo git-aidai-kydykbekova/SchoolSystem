@@ -1,35 +1,19 @@
-package com.example.Software_P.entity;
+package com.example.Software_P.dto;
 
-import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
-@Entity
-@Table(name = "students")
-@Getter
-@Setter
 
-public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class StudentDto {
     private String name;
     private String surname;
     private String email;
     private String grade;
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public Student setName(String name) {
+    public StudentDto setName(String name) {
         this.name = name;
         return this;
     }
@@ -38,7 +22,7 @@ public class Student {
         return surname;
     }
 
-    public Student setSurname(String surname) {
+    public StudentDto setSurname(String surname) {
         this.surname = surname;
         return this;
     }
@@ -47,7 +31,7 @@ public class Student {
         return email;
     }
 
-    public Student setEmail(String email) {
+    public StudentDto setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -56,7 +40,7 @@ public class Student {
         return grade;
     }
 
-    public Student setGrade(String grade) {
+    public StudentDto setGrade(String grade) {
         this.grade = grade;
         return this;
     }
