@@ -19,9 +19,11 @@ public class Mark {
     private LocalDateTime creationDate;
     private String subject;
     @ManyToOne
+    @JoinColumn(name = "student_id")
     private Student student;
-    @ManyToOne
-    private Teacher teacher;
+
+
+
 
     @PrePersist
     private void prePersist() {

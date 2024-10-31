@@ -12,6 +12,7 @@ import com.example.Software_P.service.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,11 +63,12 @@ public class TeacherServiceImpl implements TeacherService {
         Student student = studentRepository.findById(studentId).get();
         Teacher teacher = teacherRepository.findById(teacherId).get();
 
+
         Mark mark = new Mark();
         mark.setStudent(student);
-        mark.setTeacher(teacher);
         mark.setMark(mark1);
         mark.setSubject(teacher.getSubject());
+
         markRepository.save(mark);
 
         student.getMarks().add(mark);

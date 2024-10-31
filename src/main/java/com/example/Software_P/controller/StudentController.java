@@ -6,7 +6,8 @@ import com.example.Software_P.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/student")
+@RestController
+@RequestMapping("/student")
 @AllArgsConstructor
 public class StudentController {
 

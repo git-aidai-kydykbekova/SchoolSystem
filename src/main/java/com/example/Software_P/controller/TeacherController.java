@@ -1,23 +1,26 @@
 package com.example.Software_P.controller;
 
 import com.example.Software_P.dto.MarkDto;
+import com.example.Software_P.dto.MarkDtoRequest;
 import com.example.Software_P.dto.StudentDto;
 import com.example.Software_P.dto.TeacherDto;
 import com.example.Software_P.entity.Mark;
+import com.example.Software_P.mapper.MarkMapper;
 import com.example.Software_P.mapper.TeacherMapper;
 import com.example.Software_P.service.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.*;
 import java.util.List;
 
-@RestController("/teacher")
+@RestController
+@RequestMapping("/teacher")
 @AllArgsConstructor
 public class TeacherController {
 
     private final TeacherService teacherService;
     private final TeacherMapper teacherMapper;
+    private final MarkMapper markMapper;
 
     @PostMapping("/create")
     public void fillForm( @RequestBody TeacherDto teacherDto) {
@@ -39,20 +42,22 @@ public class TeacherController {
 
 
 
-    @PostMapping("/{studentId}/{teacherId}")
+    @PostMapping("/mark/{studentId}/{teacherId}")
     public void markStudent(@RequestParam int mark, @PathVariable Long studentId, @PathVariable Long teacherId) {
         teacherService.markStudent(studentId, teacherId, mark);
     }
     @GetMapping("/mark/{studentId}")
-    public List<Mark> getMark(@PathVariable Long studentId) {
-         return teacherService.getStudentsMarks(studentId);
+    public List<MarkDtoRequest> getMark(@PathVariable Long studentId) {
+         return markMapper.entitytoDtoList(teacherService.getStudentsMarks(studentId));
     }
-    @DeleteMapping("/{markId}")
+    @DeleteMapping("/mark/{markId}")
     public void deleteMark(@PathVariable Long markId) {
         teacherService.deleteMark(markId);
     }
-    @PutMapping("/{markId}")
+    @PutMapping("/mark/{markId}")
     public void updateMark(@PathVariable Long markId, @RequestBody MarkDto markDto) {
         teacherService.updateMark(markId, markDto);
     }
+
+
 }

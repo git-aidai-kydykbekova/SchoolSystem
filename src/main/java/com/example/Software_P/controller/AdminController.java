@@ -4,9 +4,11 @@ import com.example.Software_P.service.AdminService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/admin")
+@RestController
+@RequestMapping("/admin")
 @AllArgsConstructor
 public class AdminController {
 
