@@ -2,7 +2,6 @@ package com.example.Software_P.service.impl;
 
 import com.example.Software_P.dto.StudentDto;
 import com.example.Software_P.entity.Student;
-import com.example.Software_P.entity.User;
 import com.example.Software_P.repository.StudentRepository;
 import com.example.Software_P.repository.UserRepository;
 import com.example.Software_P.service.StudentService;
@@ -19,8 +18,8 @@ public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
 
     @Override
-    public void fillForm( StudentDto studentDto) {
-        //Optional <User> user = userRepository.findById(id);
+    public void fillForm(StudentDto studentDto) {
+
         Student student = new Student();
         student.setEmail(studentDto.getEmail());
         student.setName(studentDto.getName());
