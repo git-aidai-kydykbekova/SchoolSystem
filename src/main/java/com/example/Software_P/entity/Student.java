@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "students")
 @Getter
@@ -21,43 +23,7 @@ public class Student {
     private String email;
     private String grade;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany
+    private List<Mark> marks;
 
-    public String getName() {
-        return name;
-    }
-
-    public Student setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public Student setSurname(String surname) {
-        this.surname = surname;
-        return this;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Student setEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public Student setGrade(String grade) {
-        this.grade = grade;
-        return this;
-    }
 }

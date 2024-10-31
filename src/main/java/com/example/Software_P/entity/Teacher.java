@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "teachers")
 @Getter
@@ -20,5 +22,8 @@ public class Teacher {
     private String password;
     private String phone;
     private String subject;
+
+    @OneToMany
+    private List<Mark> marks;
 
 }
