@@ -5,7 +5,6 @@ import com.example.Software_P.dto.StudentDto;
 import com.example.Software_P.mapper.MarkMapper;
 import com.example.Software_P.mapper.StudentMapper;
 import com.example.Software_P.service.StudentService;
-import com.example.Software_P.service.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ public class StudentController {
     private final StudentService studentService;
     private final StudentMapper studentMapper;
     private final MarkMapper markMapper;
-    private final TeacherService teacherService;
 
 
     @PostMapping("/create")

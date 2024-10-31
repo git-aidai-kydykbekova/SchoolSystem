@@ -2,9 +2,7 @@ package com.example.Software_P.controller;
 
 import com.example.Software_P.dto.MarkDto;
 import com.example.Software_P.dto.MarkDtoRequest;
-import com.example.Software_P.dto.StudentDto;
 import com.example.Software_P.dto.TeacherDto;
-import com.example.Software_P.entity.Mark;
 import com.example.Software_P.mapper.MarkMapper;
 import com.example.Software_P.mapper.TeacherMapper;
 import com.example.Software_P.service.TeacherService;

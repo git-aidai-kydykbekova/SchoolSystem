@@ -24,5 +24,8 @@ public class Teacher {
     private String phone;
     private String subject;
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Homework> homeworks = new ArrayList<>();
+
 
 }

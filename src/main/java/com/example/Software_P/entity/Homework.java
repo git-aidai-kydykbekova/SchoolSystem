@@ -7,26 +7,34 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "marks")
+@Table(name = "homeworks")
 @Getter
 @Setter
-public class Mark {
+
+public class Homework {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int mark;
-    private LocalDateTime creationDate;
+
+    private String description;
+
+    private LocalDateTime dateTime;
+
+    private LocalDateTime deadline;
     private String subject;
+    private String grade;
+
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-
-
     @PrePersist
-    private void prePersist() {
-        creationDate = LocalDateTime.now();
-
+    public void prePersist() {
+        dateTime = LocalDateTime.now();
     }
+
 }
