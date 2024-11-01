@@ -4,6 +4,7 @@ import com.example.Software_P.dto.MarkDto;
 import com.example.Software_P.entity.Mark;
 import com.example.Software_P.entity.Student;
 import com.example.Software_P.entity.Teacher;
+import com.example.Software_P.exception.ObjectNotFoundException;
 import com.example.Software_P.repository.MarkRepository;
 import com.example.Software_P.repository.StudentRepository;
 import com.example.Software_P.repository.TeacherRepository;
@@ -41,7 +42,7 @@ public class MarkServiceImpl implements MarkService {
     @Override
     public List<Mark> getStudentsMarks(Long studentId) {
 
-        Student student = studentRepository.findById(studentId).get();
+        Student student = studentRepository.findById(studentId).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> marks = student.getMarks();
         return marks;
     }
@@ -53,8 +54,14 @@ public class MarkServiceImpl implements MarkService {
 
     @Override
     public void updateMark(Long markId, MarkDto markDto) {
-        Mark mark = markRepository.findById(markId).get();
+        Mark mark = markRepository.findById(markId).orElseThrow(()->new ObjectNotFoundException("Mark is not founded"));
         mark.setMark(markDto.getMark());
         markRepository.save(mark);
+    }
+
+    @Override
+    public void getMarksForSemester(Long studentId, String subject) {
+        Student student = studentRepository.findById(studentId).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
+
     }
 }

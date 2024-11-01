@@ -3,6 +3,8 @@ package com.example.Software_P.service.impl;
 import com.example.Software_P.dto.StudentDto;
 import com.example.Software_P.entity.Mark;
 import com.example.Software_P.entity.Student;
+import com.example.Software_P.entity.User;
+import com.example.Software_P.exception.ObjectNotFoundException;
 import com.example.Software_P.repository.StudentRepository;
 import com.example.Software_P.repository.UserRepository;
 import com.example.Software_P.service.StudentService;
@@ -32,13 +34,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudent(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
-        return student;
+        return studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
     }
 
     @Override
     public void update(Long id, StudentDto studentDto) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         student.setName(studentDto.getName());
         student.setSurname(studentDto.getSurname());
         student.setEmail(studentDto.getEmail());
@@ -53,7 +54,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksMath(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksMath = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -67,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksRussian(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksRussian = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -81,7 +82,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksArt(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksArt = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -95,7 +96,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksMusic(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksMusic = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -109,7 +110,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksScience(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksScience = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -123,7 +124,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksEnglish(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksEnglish = new ArrayList<>();
         for(Mark mark : studentMarks){
@@ -137,7 +138,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Mark> getStudentsMarksHistory(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
         List<Mark> studentMarks = student.getMarks();
         List<Mark> studentMarksHistory = new ArrayList<>();
         for(Mark mark : studentMarks){

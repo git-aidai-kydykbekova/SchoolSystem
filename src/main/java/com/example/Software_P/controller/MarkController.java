@@ -34,4 +34,9 @@ public class MarkController {
     public void updateMark(@PathVariable Long markId, @RequestBody MarkDto markDto) {
         markService.updateMark(markId, markDto);
     }
+
+    @GetMapping("/semester/{studentId}/")
+    public void getSemestersMark(@PathVariable Long studentId, @RequestParam String subject) {
+        markService.getMarksForSemester(studentId,subject);
+    }
 }

@@ -13,4 +13,6 @@ public interface MarkService {
     void deleteMark(Long markId);
 
     void updateMark(Long markId, MarkDto markDto);
+
+    void getMarksForSemester(Long studentId, String subject);
 }
