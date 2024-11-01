@@ -14,5 +14,5 @@ public interface MarkService {
 
     void updateMark(Long markId, MarkDto markDto);
 
-    void getMarksForSemester(Long studentId, String subject);
+     List<Mark> getMarksForSemester(Long studentId, String subject);
 }

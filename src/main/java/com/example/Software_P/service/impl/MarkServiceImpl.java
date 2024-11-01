@@ -12,6 +12,8 @@ import com.example.Software_P.service.MarkService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,10 +24,11 @@ public class MarkServiceImpl implements MarkService {
     private StudentRepository studentRepository;
     private TeacherRepository teacherRepository;
 
+
     @Override
     public void markStudent(Long studentId, Long teacherId, int mark1) {
-        Student student = studentRepository.findById(studentId).get();
-        Teacher teacher = teacherRepository.findById(teacherId).get();
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new ObjectNotFoundException("Student not found"));
+        Teacher teacher = teacherRepository.findById(teacherId).orElseThrow(() -> new ObjectNotFoundException("Student not found"));
 
 
         Mark mark = new Mark();
@@ -43,8 +46,7 @@ public class MarkServiceImpl implements MarkService {
     public List<Mark> getStudentsMarks(Long studentId) {
 
         Student student = studentRepository.findById(studentId).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
-        List<Mark> marks = student.getMarks();
-        return marks;
+        return  student.getMarks();
     }
 
     @Override
@@ -59,9 +61,24 @@ public class MarkServiceImpl implements MarkService {
         markRepository.save(mark);
     }
 
-    @Override
-    public void getMarksForSemester(Long studentId, String subject) {
-        Student student = studentRepository.findById(studentId).orElseThrow(()->new ObjectNotFoundException("Student is not founded"));
 
+    @Override
+    public List<Mark> getMarksForSemester(Long studentId, String subject) {
+        Student student = studentRepository.findById(studentId).orElseThrow(() -> new ObjectNotFoundException("Student is not found"));
+
+        LocalDate semesterStart = LocalDate.of(2024, 9, 1);
+        LocalDate semesterEnd = LocalDate.of(2024, 12, 31);
+
+        List<Mark> marks = student.getMarks();
+        List<Mark> marksForSemester = new ArrayList<>();
+
+        for (Mark mark : marks) {
+            LocalDate markDate = mark.getCreationDate().toLocalDate(); // Преобразуем LocalDateTime в LocalDate
+            if (markDate.isAfter(semesterStart.minusDays(1)) && markDate.isBefore(semesterEnd.plusDays(1)) && mark.getSubject().equals(subject)) {
+                marksForSemester.add(mark);
+            }
+        }
+        return marksForSemester;
     }
+
 }

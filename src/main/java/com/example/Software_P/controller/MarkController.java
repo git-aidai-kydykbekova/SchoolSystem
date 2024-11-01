@@ -36,7 +36,7 @@ public class MarkController {
     }
 
     @GetMapping("/semester/{studentId}/")
-    public void getSemestersMark(@PathVariable Long studentId, @RequestParam String subject) {
-        markService.getMarksForSemester(studentId,subject);
+    public List<MarkDtoRequest> getSemestersMark(@PathVariable Long studentId, @RequestParam String subject) {
+        return markMapper.entitytoDtoList(markService.getMarksForSemester(studentId,subject)) ;
     }
 }
