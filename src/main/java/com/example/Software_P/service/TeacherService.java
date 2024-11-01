@@ -18,11 +18,5 @@ public interface TeacherService {
 
     void deleteTeacher(Long id);
 
-    void markStudent(Long studentId, Long teacherId, int mark);
 
-    List<Mark> getStudentsMarks(Long studentId);
-
-    void deleteMark(Long markId);
-
-    void updateMark(Long markId, MarkDto markDto);
 }

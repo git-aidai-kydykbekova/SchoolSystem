@@ -18,7 +18,7 @@ public class TeacherController {
 
     private final TeacherService teacherService;
     private final TeacherMapper teacherMapper;
-    private final MarkMapper markMapper;
+
 
     @PostMapping("/create")
     public void fillForm( @RequestBody TeacherDto teacherDto) {
@@ -40,22 +40,6 @@ public class TeacherController {
 
 
 
-    @PostMapping("/mark/{studentId}/{teacherId}")
-    public void markStudent(@RequestParam int mark, @PathVariable Long studentId, @PathVariable Long teacherId) {
-        teacherService.markStudent(studentId, teacherId, mark);
-    }
-    @GetMapping("/mark/{studentId}")
-    public List<MarkDtoRequest> getMark(@PathVariable Long studentId) {
-         return markMapper.entitytoDtoList(teacherService.getStudentsMarks(studentId));
-    }
-    @DeleteMapping("/mark/{markId}")
-    public void deleteMark(@PathVariable Long markId) {
-        teacherService.deleteMark(markId);
-    }
-    @PutMapping("/mark/{markId}")
-    public void updateMark(@PathVariable Long markId, @RequestBody MarkDto markDto) {
-        teacherService.updateMark(markId, markDto);
-    }
 
 
 

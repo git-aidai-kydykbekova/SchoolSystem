@@ -58,40 +58,5 @@ public class TeacherServiceImpl implements TeacherService {
         teacherRepository.deleteById(id);
     }
 
-    @Override
-    public void markStudent(Long studentId, Long teacherId, int mark1) {
-        Student student = studentRepository.findById(studentId).get();
-        Teacher teacher = teacherRepository.findById(teacherId).get();
 
-
-        Mark mark = new Mark();
-        mark.setStudent(student);
-        mark.setMark(mark1);
-        mark.setSubject(teacher.getSubject());
-
-        markRepository.save(mark);
-
-        student.getMarks().add(mark);
-
-    }
-
-    @Override
-    public List<Mark> getStudentsMarks(Long studentId) {
-
-        Student student = studentRepository.findById(studentId).get();
-        List<Mark> marks = student.getMarks();
-        return marks;
-    }
-
-    @Override
-    public void deleteMark(Long markId) {
-        markRepository.deleteById(markId);
-    }
-
-    @Override
-    public void updateMark(Long markId, MarkDto markDto) {
-        Mark mark = markRepository.findById(markId).get();
-        mark.setMark(markDto.getMark());
-        markRepository.save(mark);
-    }
 }
