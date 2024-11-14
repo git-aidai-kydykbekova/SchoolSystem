@@ -1,11 +1,12 @@
 package com.example.Software_P.dto;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 public class HomeworkDto {
     private String grade;
     private String description;
-    private LocalDateTime deadline;
+    private OffsetDateTime deadline;
 
     public String getGrade() {
         return grade;
@@ -25,11 +26,11 @@ public class HomeworkDto {
         return this;
     }
 
-    public LocalDateTime getDeadline() {
+    public OffsetDateTime getDeadline() {
         return deadline;
     }
 
-    public HomeworkDto setDeadline(LocalDateTime deadline) {
+    public HomeworkDto setDeadline(OffsetDateTime deadline) {
         this.deadline = deadline;
         return this;
     }

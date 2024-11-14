@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "homeworks")
@@ -21,7 +22,7 @@ public class Homework {
 
     private LocalDateTime dateTime;
 
-    private LocalDateTime deadline;
+    private OffsetDateTime deadline;
     private String subject;
     private String grade;
 
