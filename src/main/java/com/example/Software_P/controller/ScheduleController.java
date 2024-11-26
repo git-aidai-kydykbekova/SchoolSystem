@@ -6,6 +6,8 @@ import com.example.Software_P.service.ScheduleService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/schedule")
 @AllArgsConstructor
@@ -33,4 +35,21 @@ public class ScheduleController {
     public void deleteSchedule(@PathVariable Long id) {
         scheduleService.deleteSchedule(id);
     }
+
+    @GetMapping("/byGrade")
+    public List<ScheduleDto> getScheduleByGrade(@RequestParam String grade) {
+        return scheduleMapper.entitytoDtoList(scheduleService.getListOfScheduleByGrade(grade));
+    }
+
+    @GetMapping("/byDay")
+    public List<ScheduleDto> getScheduleByDay(@RequestParam String day) {
+        return scheduleMapper.entitytoDtoList(scheduleService.getListOfScheduleByDay(day));
+    }
+
+    @GetMapping("/byDayAndGrade")
+    public List<ScheduleDto> getScheduleByDayAndGrade(@RequestParam String day, @RequestParam String grade) {
+        return scheduleMapper.entitytoDtoList(scheduleService.getListOfScheduleByDayAndGrade(day, grade));
+    }
+
+
 }

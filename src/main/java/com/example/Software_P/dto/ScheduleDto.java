@@ -8,7 +8,16 @@ public class ScheduleDto {
     private String dayOfWeek;
     private String dueTime;
     private String year;
+    private String grade;
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public ScheduleDto setGrade(String grade) {
+        this.grade = grade;
+        return this;
+    }
 
     public String getTitle() {
         return title;
