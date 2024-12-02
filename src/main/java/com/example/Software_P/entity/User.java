@@ -29,8 +29,8 @@ public class User implements UserDetails {
     private Role role;
     private LocalDateTime creationDate;
 
-    @OneToMany
-    private List<Message> messages;
+//    @OneToMany
+//    private List<Message> messages;
 
 
 

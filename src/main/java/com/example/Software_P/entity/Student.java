@@ -30,5 +30,8 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Homework> homeworks = new ArrayList<>();
 
+    @OneToOne
+    private Parent parent;
+
 
 }
